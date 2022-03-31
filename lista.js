@@ -1,97 +1,25 @@
-window.onload = () => {
-    const form1 = document.querySelector("#addForm");
+// console.log('teste');
 
-    let items = document.getElementById("items");
-    let submit = document.getElementById("submit");
+// function myFunction(){
+//     console.log("teste inicial");
+// }
 
-    let editItem = null;
+function addItem(){
+    const inputItem = document.querySelector('[data-form-input]')
+    const valorItem = inputItem.value
 
-    form1.addEventListener("submit", addItem);
-    items.addEventListener("click", removeItem);
-};
+    const listaDeItems = document.querySelector('[data-task]')
 
-function addItem(e) {
-    e.preventDefault();
+    novaLabel = document.createElement('label')
+    novaLabel.innerText = valorItem
+    
+    novoItem = document.createElement('li')
 
-    if (submit.value != "Submit") {
-        console.log("Hello");
+    // novoItem.appendChild(criarBotaoConcluir())
+    novoItem.appendChild(novaLabel)
+    // novoItem.appendChild(criarBotaoDelete())
 
-        editItem.target.parentNode.childNodes[0].data
-            = document.getElementById("item").value;
+    listaDeItems.appendChild(novoItem)
 
-        submit.value = "Submit";
-        document.getElementById("item").value = "";
-
-        document.getElementById("lblsuccess").innerHTML
-            = "Text edited successfully";
-
-        document.getElementById("lblsuccess")
-            .style.display = "block";
-
-        setTimeout(function () {
-            document.getElementById("lblsuccess")
-                .style.display = "none";
-        }, 3000);
-
-        return false;
-    }
-
-    let newItem = document.getElementById("item").value;
-    if (newItem.trim() == "" || newItem.trim() == null)
-        return false;
-    else
-        document.getElementById("item").value = "";
-
-    let li = document.createElement("li");
-    li.className = "list-group-item";
-
-    let deleteButton = document.createElement("button");
-
-    deleteButton.className =
-        "btn-danger btn btn-sm float-right delete";
-
-    deleteButton.appendChild(document.createTextNode("Delete"));
-
-    let editButton = document.createElement("button");
-
-    editButton.className =
-        "btn-success btn btn-sm float-right edit";
-
-    editButton.appendChild(document.createTextNode("Edit"));
-
-    li.appendChild(document.createTextNode(newItem));
-    li.appendChild(deleteButton);
-    li.appendChild(editButton);
-
-    items.appendChild(li);
-}
-
-function removeItem(e) {
-    e.preventDefault();
-    if (e.target.classList.contains("delete")) {
-        if (confirm("Are you Sure?")) {
-            let li = e.target.parentNode;
-            items.removeChild(li);
-            document.getElementById("lblsuccess").innerHTML
-                = "Text deleted successfully";
-
-            document.getElementById("lblsuccess")
-                .style.display = "block";
-
-            setTimeout(function () {
-                document.getElementById("lblsuccess")
-                    .style.display = "none";
-            }, 3000);
-        }
-    }
-    if (e.target.classList.contains("edit")) {
-        document.getElementById("item").value =
-            e.target.parentNode.childNodes[0].data;
-        submit.value = "EDIT";
-        editItem = e;
-    }
-}
-
-function toggleButton(ref, btnID) {
-    document.getElementById(btnID).disabled = false;
+    inputItem.value = ""
 }
