@@ -9,9 +9,6 @@ function EditItem(){
     document.querySelector('[data-form-input]').value = valor_lista;
     document.querySelector('[button-input]').classList.add("btn", "btn-danger", "d-none")
     document.querySelector('[button-edit]').classList.remove("d-none")
-
-    console.log(valor_lista)
-
 }
 
 function CriarBotaoDelete(){
@@ -36,22 +33,30 @@ function CriarBotaoEdit(){
 
 function Submit(){
     const lista = document.querySelector('[data-task]')
-    valor = document.querySelector('[data-form-input]')
 
+    try{
+        valor = document.querySelector('[data-form-input]').value
+    }
+    catch (error)
+    {
+        valor = ""
+        console.log("campo input nao encontrado")
+    }
+    
     const novo_item_lista = document.createElement("li")
     novo_item_lista.className = "list-group-item";
-    novo_item_lista.innerHTML = valor.value
+    novo_item_lista.innerHTML = valor
 
-    precos = [["abacaxi", 2], ["banana", 4]]
+    // precos = [["abacaxi", 2], ["banana", 4]]
     
-    for (preco in precos){
-        if (precos[preco][0] == valor.value){
-            console.log(precos[preco][1])
-        }
-        else{
-            alert("Atenção, produto nao encontrado")
-        }
-    }  
+    // for (preco in precos){
+    //     if (precos[preco][0] == valor.value){
+    //         console.log(precos[preco][1])
+    //     }
+    //     else{
+    //         alert("Atenção, produto nao encontrado")
+    //     }
+    // }  
     novo_item_lista.appendChild(CriarBotaoDelete())
     novo_item_lista.appendChild(CriarBotaoEdit())
 
@@ -71,36 +76,3 @@ function Edit(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-// function myFunction(){
-//     console.log("teste inicial");
-// }
-
-// function addItem(){
-//     const inputItem = document.querySelector('[data-form-input]')
-//     const valorItem = inputItem.value
-
-//     const listaDeItems = document.querySelector('[data-task]')
-
-//     novaLabel = document.createElement('label')
-//     novaLabel.innerText = valorItem
-    
-//     novoItem = document.createElement('li')
-
-//     // novoItem.appendChild(criarBotaoConcluir())
-//     novoItem.appendChild(novaLabel)
-//     // novoItem.appendChild(criarBotaoDelete())
-
-//     listaDeItems.appendChild(novoItem)
-
-//     inputItem.value = ""
-//}
