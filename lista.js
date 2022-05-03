@@ -36,13 +36,22 @@ function CriarBotaoEdit(){
 
 function Submit(){
     const lista = document.querySelector('[data-task]')
-    const valor = document.querySelector('[data-form-input]')
+    valor = document.querySelector('[data-form-input]')
 
     const novo_item_lista = document.createElement("li")
     novo_item_lista.className = "list-group-item";
-
     novo_item_lista.innerHTML = valor.value
- 
+
+    precos = [["abacaxi", 2], ["banana", 4]]
+    
+    for (preco in precos){
+        if (precos[preco][0] == valor.value){
+            console.log(precos[preco][1])
+        }
+        else{
+            alert("Atenção, produto nao encontrado")
+        }
+    }  
     novo_item_lista.appendChild(CriarBotaoDelete())
     novo_item_lista.appendChild(CriarBotaoEdit())
 
