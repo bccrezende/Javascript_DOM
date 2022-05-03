@@ -3,6 +3,17 @@ function DeleteItem(){
     this.parentElement.remove()
 }
 
+function EditItem(){
+    item_clicado = this.parentElement
+    valor_lista = item_clicado.textContent.replace("DeleteEdit","")
+    document.querySelector('[data-form-input]').value = valor_lista;
+    document.querySelector('[button-input]').classList.add("btn", "btn-danger", "d-none")
+    document.querySelector('[button-edit]').classList.remove("d-none")
+
+    console.log(valor_lista)
+
+}
+
 function CriarBotaoDelete(){
     const botao_delete =  document.createElement('button')
     botao_delete.classList.add("btn", "btn-danger")
@@ -11,6 +22,16 @@ function CriarBotaoDelete(){
     botao_delete.addEventListener("click", DeleteItem);
 
     return botao_delete
+}
+
+function CriarBotaoEdit(){
+    const botao_edit =  document.createElement('button')
+    botao_edit.classList.add("btn", "btn-dark")
+    botao_edit.innerHTML = "Edit"
+    botao_edit.type = "button"
+    botao_edit.addEventListener("click", EditItem);
+
+    return botao_edit
 }
 
 function Submit(){
@@ -23,9 +44,20 @@ function Submit(){
     novo_item_lista.innerHTML = valor.value
  
     novo_item_lista.appendChild(CriarBotaoDelete())
+    novo_item_lista.appendChild(CriarBotaoEdit())
+
     lista.appendChild (novo_item_lista)
 
     document.getElementById("item").value = ""
+}
+
+function Edit(){
+    item_clicado.innerText = document.querySelector('[data-form-input]').value
+    item_clicado.appendChild(CriarBotaoDelete())
+    item_clicado.appendChild(CriarBotaoEdit())
+
+    document.querySelector('[button-edit]').className = "btn btn-dark d-none"
+    document.querySelector('[button-input]').classList.remove("d-none")
 }
 
 
